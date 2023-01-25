@@ -7,6 +7,7 @@
 ## デモンストレーション
 - 監視システムの立ち上げ ([バックとフォアの動作差異詳細](https://docs.docker.jp/engine/reference/run.html))
   - docker-compose up -d
+  - docker-compose -f docker-compose.yml up -d
 - 監視システムの確認
   - prometheus
     - [http://localhost:9090](http://localhost:9090)
