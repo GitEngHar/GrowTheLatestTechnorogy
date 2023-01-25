@@ -9,4 +9,4 @@
 ## 利用したDocker技術要素
 
 ## +αでやりたいと思ったこと
--- Screwdriverを用いた自動デプロイ
+- Screwdriverを用いた自動デプロイ
