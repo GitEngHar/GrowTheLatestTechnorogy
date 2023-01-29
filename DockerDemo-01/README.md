@@ -14,6 +14,8 @@
   - aleartmanager
     - [http://localhost:9093](http://localhost:9093)
   - wordpress
+    - [http://localhost:8080](http://localhost:8000)
+   - cadvisor 
     - [http://localhost:8080](http://localhost:8080)
 - アラート発生
   - docker stop wordpress_1
