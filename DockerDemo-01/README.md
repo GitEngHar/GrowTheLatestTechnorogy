@@ -11,8 +11,6 @@
 - 監視システムの確認
   - prometheus
     - [http://localhost:9090](http://localhost:9090)
-  - grafana
-    - [http://localhost:3000](http://localhost:3000)
   - aleartmanager
     - [http://localhost:9093](http://localhost:9093)
   - wordpress
