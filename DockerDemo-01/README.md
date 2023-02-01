@@ -4,6 +4,7 @@
 
 ## 構成図
 
+
 ## デモンストレーション
 - 監視システムの立ち上げ ([バックとフォアの動作差異詳細](https://docs.docker.jp/engine/reference/run.html))
   - docker-compose -f docker-compose.yml up -d
@@ -20,7 +21,8 @@
   - docker stop wordpress_1
 
 ## 利用したDocker技術要素
-
+- [docker-compose.yml](https://docs.docker.jp/compose/overview.html)
+- 
 ## 今後のやりたいこと
 - Screwdriverを用いた自動デプロイ
 - スマートにコンテナのメトリクスを取得する方法があれば知りたいですmm
