@@ -18,7 +18,7 @@
     - [http://localhost:8000](http://localhost:8000)
 
 - アラート発生
-  - docker stop wordpress_1
+  - docker stop wordpress
 
 ## 参考リンク
 - [docker-compose.ymlについて](https://docs.docker.jp/compose/overview.html)
