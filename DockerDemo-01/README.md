@@ -3,7 +3,7 @@
 ## はじめに
 
 ## 構成図
-
+![構成図](https://user-images.githubusercontent.com/119464648/215912438-289c8e2c-98b8-4e29-ad2c-4eb69482f7d4.png)
 
 ## デモンストレーション
 - 監視システムの立ち上げ ([バックとフォアの動作差異詳細](https://docs.docker.jp/engine/reference/run.html))
