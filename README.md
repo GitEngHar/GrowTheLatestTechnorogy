@@ -1,7 +1,7 @@
 # GrowTheLatestTechnorogy
 
 ## 目的
-
+最新技術の研究及び、普及。
 
 ## ディレクトリ内容
 - DockerDemo-01
