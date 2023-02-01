@@ -1,6 +1,8 @@
 # アラート通知デモ
 
 ## はじめに
+DockerDemo-01 はwordpressが動作しているコンテナのメトリクスを監視し、Slackにアラートを通知するデモになります。
+dockerで指定された構成を組むにあたっての基本を学ぶことができます。
 
 ## 構成図
 ![構成図](https://user-images.githubusercontent.com/119464648/215913640-13fcf3eb-1cd3-4ad6-9a8a-e7eef123b9b4.png)
