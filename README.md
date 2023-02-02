@@ -9,5 +9,8 @@
 - DockerDemo-01
   - wordpressが動作しているコンテナのメトリクスを監視し、Slackにアラートを通知するデモ。
 
+## 好きなスタイル
+- [脱レガシー](https://logmi.jp/tech/articles/323661)
+
 ## 便利リンク集
 - [Markdownチートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
