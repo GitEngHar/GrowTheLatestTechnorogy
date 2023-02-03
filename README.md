@@ -15,7 +15,5 @@
 ## 便利リンク集
 - [Markdownチートシート](https://qiita.com/Qiita/items/c686397e4a0f4f11683d)
 
-kubernetes(aws)
- - 高可用性を保証するシステム
-   - 
+
    
