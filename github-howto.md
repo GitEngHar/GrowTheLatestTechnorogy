@@ -37,10 +37,10 @@ githubの操作に困らないよう操作方法を書く
 
 | コマンド名  | 使いどころ |
 | ------------- | ------------- |
-| git clone  | リポジトリをDesktopに持っていきたい  |
-| git add -A  | Desktopで変更した内容をローカルリポジトリにコミットできるようにしたい  |
-| git commit -m <メッセージ>  | 変更した内容をローカルリポジトリに反映(コミット)  |
-| git push  | ローカルリポジトリの内容をリモートリポジトリに反映(mainにいきなり反映は×)  |
-| git checkout -c <ブランチ名>  | 新しいブランチを作成し切り替える  |
-| git status  | 今いるブランチを見たり、ローカルリポジトリは最新か確認したり  |
+| [git clone <https url>](https://codelikes.com/git-clone/#:~:text=%23%20%2D%2D%2D%20%E7%9C%81%E7%95%A5%20%2D%2D%2D-,Github%E3%81%AE%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%81%8B%E3%82%89%E3%82%BD%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89%E3%81%97%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86,-%E5%AE%9F%E9%9A%9B%E3%81%ABGithub)  | リポジトリをDesktopに持っていきたい  |
+| [git add -A](https://qiita.com/TaaaZyyy/items/b2b68aec99789374a204#:~:text=%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%20untracked%20%E3%81%A8%E3%81%99%E3%81%B9%E3%81%A6%E3%81%AE%20modified%20%E3%82%92%20staged%20%E3%81%AB%E3%81%99%E3%82%8B%20(%2D%2Dall))  | Desktopで変更した内容をローカルリポジトリにコミットできるようにしたい  |
+| [git commit -m <メッセージ>](https://qiita.com/TaaaZyyy/items/b2b68aec99789374a204#:~:text=%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89-,%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88,-git%20commit%20%2Dm)  | 変更した内容をローカルリポジトリに反映(コミット)  |
+| [git push](https://qiita.com/TaaaZyyy/items/b2b68aec99789374a204#:~:text=%E7%8F%BE%E5%9C%A8%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%AE%E5%A4%89%E6%9B%B4%E3%82%92%E3%83%AA%E3%83%A2%E3%83%BC%E3%83%88%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%AB%E5%8F%8D%E6%98%A0%E3%81%95%E3%81%9B%E3%82%8B)  | ローカルリポジトリの内容をリモートリポジトリに反映(mainにいきなり反映は×)  |
+| [git checkout -b <ブランチ名>](https://qiita.com/TaaaZyyy/items/b2b68aec99789374a204#:~:text=amend%20%2Dm%20%22%5Bcomment%5D%22-,%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%82%A2%E3%82%A6%E3%83%88,-%E7%94%A8%E9%80%94)  | 新しいブランチを作成し切り替える  |
+| [git status](https://qiita.com/TaaaZyyy/items/b2b68aec99789374a204#:~:text=git%20clone%20%5Burl%5D-,%E7%A2%BA%E8%AA%8D,-%E7%94%A8%E9%80%94)  | 今いるブランチを見たり、ローカルリポジトリは最新か確認したり  |
 | git pull origin main  | 今いるリポジトリの状態を最新にするよ  |
