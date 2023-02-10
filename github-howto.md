@@ -29,7 +29,7 @@ githubの操作に困らないよう操作方法を書く
   - 今いるブランチで変更したファイルの内容を反映するよ。
 - PR(プルリクエスト)
   - mainに変更を反映(marge)する前にレビューしてって感じ
-- issue(イシュー)
+- [issue(イシュー)](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues)
   - 何か問題があった際に立てるスレッド(掲示板)みたいなものだよ
 
 
