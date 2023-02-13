@@ -1,0 +1,12 @@
+## DockerInitでコンテナ技術者になる🔥
+### 身につくこと
+- Dockerの役割を理解できる
+- Dockerの基本操作を理解して使える
+- Dockerでサービスを構築できるようになる
+- オーケストレーションツール(kubernetes)の必要性を理解できる
+### 完了目安期間
+#### xxx 
+### 習得Story
+1. Dockerについて知ろう!
+1. DockerHands-on-Lv1
+1. DockerHands-on-Lv2
