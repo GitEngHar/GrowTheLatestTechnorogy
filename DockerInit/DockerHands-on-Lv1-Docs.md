@@ -46,7 +46,9 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 - wordpressのimageをダウンロード
 ` docker pull wordpress `
 - wordpressコンテナを作成
+
 ` docker run --name wordp -p 8080:80 wordpress  `
+
 - [webアクセス](http://127.0.0.1:8080/)
 - 以下の工程を実施
   - wordpressの言語選択ページを進める
@@ -56,6 +58,7 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 
 #### networkを作成
 - wordpressとmysqlのネットワークを作成
+
 ` docker network create wordpress_net `
 
 #### detabaseとmysqlを設定
