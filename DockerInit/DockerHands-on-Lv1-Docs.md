@@ -36,7 +36,9 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 ##### Documentルート設定ディレクトリをマウントしindex.htmlの設置
 - dockerのディレクトリをマウントして共有ディレクトリを持つ
   - local環境(windows,mac)のdocker実行ディレクトリにsource_dirを作成
+
 ` docker run -d -it --name web-test -p 8080:80 --mount type=bind,source=${pwd}\source_dir,target=調べたDocumentルート先 httpd `
+
 - source_dirにindex.htmlを作成(中身を適当に書く)
 - [webアクセス](http://127.0.0.1:8080/)
 
@@ -44,7 +46,9 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 ### wodpress環境の構築(データベース×web)
 #### wordpressコンテナの作成
 - wordpressのimageをダウンロード
+
 ` docker pull wordpress `
+
 - wordpressコンテナを作成
 
 ` docker run --name wordp -p 8080:80 wordpress  `
