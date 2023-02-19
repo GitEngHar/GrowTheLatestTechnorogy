@@ -3,7 +3,7 @@
 
 ```
 PS D:\Seraku\GrowTheLatestTechnorogy\DockerDemo-01> docker image pull httpd
-```あｖｚ「ｘＺＣ　ｖｖｂ
+```
 
 #### コンテナの起動
 | command | 説明 |
