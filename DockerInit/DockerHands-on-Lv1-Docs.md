@@ -1,4 +1,5 @@
 ### webサーバの構築
+---
 #### imageの取得
 
 ```
@@ -46,7 +47,9 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 - [webアクセス](http://127.0.0.1:8080/)
 index.htmlの中身が表示されれば成功
 
+
 ### wodpress環境の構築(データベース×web)
+---
 #### wordpressコンテナの作成
 - wordpressのimageをダウンロード
 
