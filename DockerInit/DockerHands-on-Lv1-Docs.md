@@ -2,7 +2,7 @@
 #### imageの取得
 
 ```
-PS D:\Seraku\GrowTheLatestTechnorogy\DockerDemo-01> docker image pull httpd
+docker image pull httpd
 ```
 
 #### コンテナの起動
@@ -20,8 +20,10 @@ docker run --name web-test -d -p 8080:80 httpd
 
 #### 動作確認
 - 動作コンテナ確認
+  - 実行結果に対象のコンテナがあれば作成完了 
 ```
 docker ps
+
 CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS                  NAMES
 99f64763113e   httpd     "httpd-foreground"   45 minutes ago   Up 45 minutes   0.0.0.0:8080->80/tcp   web-test
 ```
