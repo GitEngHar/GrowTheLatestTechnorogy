@@ -38,6 +38,9 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 - cat /usr/local/apache2/conf/httpd.conf | grep -e Document
   - > /usr/local/apache2/htdocs
 - exit
+- コンテナを削除( 次のセクションで新しいコンテナを作成するため )
+  - ` docker rm web-test `
+
 
 ##### Documentルート設定ディレクトリをマウントしindex.htmlの設置
 - dockerのディレクトリをマウントして共有ディレクトリを持つ
