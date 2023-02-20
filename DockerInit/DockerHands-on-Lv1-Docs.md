@@ -1,3 +1,5 @@
+本資料は[docker実行環境](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/docker-start.md)がセットアップされていることを前提とした資料になります。
+
 ### webサーバの構築
 ---
 #### imageの取得
