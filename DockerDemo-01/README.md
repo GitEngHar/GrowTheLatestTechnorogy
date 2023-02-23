@@ -9,8 +9,17 @@ dockerで指定された構成を組むにあたっての基本を学ぶこと�
 
 ## デモンストレーション
 - 監視システムの立ち上げ ([バックとフォアの動作差異詳細](https://docs.docker.jp/engine/reference/run.html))
-  - docker-compose -f docker-compose.yml up -d
   - docker-compose up -d  
+- wordpresコンテナでexporterを起動
+
+```
+$ docker exec -it wordpress bash  
+
+$ bash -c "tar xvfz /root/node_exporter-1.5.0.linux-amd64.tar.gz &&
+./node_exporter-1.5.0.linux-amd64/node_exporter &&
+apache2 -DFOREGROUND "   
+```
+
 - 監視システムの確認
   - prometheus
     - [http://localhost:9090](http://localhost:9090)

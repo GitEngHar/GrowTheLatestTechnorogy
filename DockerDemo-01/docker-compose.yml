@@ -10,9 +10,13 @@ services:
     ports:
       - 9090:9090
     restart: always
+    networks:
+      - test_net    
 
   alertmanager:
     image: prom/alertmanager
+    depends_on:
+      - wordpress
     container_name: alertmanager
     volumes:
       - ./alertmanager:/etc/alertmanager
@@ -20,10 +24,42 @@ services:
     ports:
       - 9093:9093
     restart: always
+    networks:
+      - test_net
 
   wordpress:
+    depends_on:
+      - db
     image: wordpress:latest
     container_name: wordpress
+    volumes:
+      - ./node_exporter-1.5.0.linux-amd64.tar.gz:/root/node_exporter-1.5.0.linux-amd64.tar.gz
     ports:
       - "8000:80"
+      - "9100:9100"
     restart: always
+    networks:
+      - test_net
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    #command: >
+    #  bash -c "tar xvfz /root/node_exporter-1.5.0.linux-amd64.tar.gz &&
+    #  ./node_exporter-1.5.0.linux-amd64/node_exporter &&
+    #  apache2 -DFOREGROUND "      
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - test_net
+
+networks:
+  test_net:
