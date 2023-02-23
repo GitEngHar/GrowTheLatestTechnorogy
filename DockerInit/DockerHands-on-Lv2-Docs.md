@@ -48,8 +48,85 @@ CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
 - Composeファイルでアプリケーションが作れちゃうよ！
   - ファイル1つでいつでも再構成できちゃうよ！
 
+### Docker Composeを使ったwebサーバの構築
+
+| セクション | 意味 |
+| - | - |
+| version | |
+| services | |
+| services.http-server | |
+| services.http-server.image | |
+| services.http-server.ports | |
+| services.http-server.restart | |
+
+- composeファイルの作成
+  - ローカルディレクトリにファイルを作成
+    - 名前: `docker-compose.yml`
+    - 以下ファイルの中身
+
+```
+version: '3'
+services:
+  http-server:
+    image: httpd
+    ports:
+      - 8080:80
+    restart: always
+```
+- 動作検証
+  - ` docker compose up `
+  - [ブラウザ](http://127.0.0.1:8080)で動作確認
+
 ### Docker Composeを使ったwordpressサーバの構築
 
+| セクション | 意味 |
+| - | - |
+| networks | |
+| services.wordpress.depends_on | |
+| services.wordpress.environment | |
+| services.wordpress.networks | |
+
+- composeファイルの作成
+  - ローカルディレクトリにファイルを作成
+    - 名前： ` docker-compose-wordpress.yaml `
+    - 以下ファイルの中身
+
+```
+version: '3'
+services:
+  wordpress:
+    depends_on:
+      - mysql_db
+    image: wordpress
+    networks:
+      - word_network
+    ports:
+      - 8080:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: mysql_db
+      WORDPRESS_DB_NAME: wordpressdb
+      WORDPRESS_DB_USER: user01
+      WORDPRESS_DB_PASSWORD: user01pass
+
+  mysql_db:
+    image: mysql:5.7
+    networks:
+      - word_network
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd 
+      MYSQL_DATABASE: wordpressdb 
+      MYSQL_USER: user01 
+      MYSQL_PASSWORD: user01pass
+
+networks:
+  word_network:
+```
+
+- 動作検証
+  - ` docker compose -f docker-compose-wordpress up `
+  - [ブラウザ](http://127.0.0.1:8080)で動作確認
 
 ### これで完璧DockerFile
 
