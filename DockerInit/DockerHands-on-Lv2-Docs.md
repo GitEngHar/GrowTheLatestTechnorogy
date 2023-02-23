@@ -19,7 +19,6 @@
 | FROM | 実行の元になるOS |
 | RUN | DockerFileのbuildで実行されるコマンド |
 | CMD | docker runで実行されるコマンド。推奨=>exec形式・shell形式あり |
-| HEALTHCHECK | コンテナ稼働状況の監視 |
 
 - ローカルディレクトリにファイルを作成。
   - 名前： ` DockerFile `
@@ -36,6 +35,9 @@ CMD ["/usr/sbin/httpd", "-DFOREGROUND"]
 - 動作確認
   - ` docker run --name myapp -p 8080:80 my-app `
   - [ブラウザ](http://127.0.0.1:8080)で動作確認
+
+### 挑戦!Docker-File!!
+※テストを追加予定
 
 ### DockerFileのベストプラクティス
 [Docker-docs-ja](https://docs.docker.jp/develop/develop-images/dockerfile_best-practices.html)
@@ -128,8 +130,9 @@ networks:
   - ` docker compose -f docker-compose-wordpress up `
   - [ブラウザ](http://127.0.0.1:8080)で動作確認
 
-### これで完璧DockerFile
-
+### 挑戦!Docker-Compose!!
+※テストを追加予定
 
 ## 参考
 [とほほ入門](https://www.tohoho-web.com/docker/dockerfile.html)
+[Docker-docs-ja](https://docs.docker.jp/)

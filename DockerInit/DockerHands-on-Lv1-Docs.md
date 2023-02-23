@@ -1,10 +1,10 @@
 本資料は[docker実行環境](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/docker-start.md)がセットアップされていることを前提とした資料になります。
 
 ### webサーバの構築
-- コンテナを作成する流れ
-  1. コンテナの元になるファイル(image)をダウンロード
-  1. imageを使ってコンテナを作成
-  1. 動作テスト
+#### コンテナを作成する流れ
+1. コンテナの元になるファイル(image)をダウンロード
+1. imageを使ってコンテナを作成
+1. 動作テスト
 ---
 #### imageの取得
 
@@ -111,5 +111,8 @@ index.htmlの中身が表示されれば成功
 | データベースのホスト名 | コンテナ名 |
 
 ` docker run --name wordp -dit --net=wordpress_net -p 8080:80 wordpress `
+
+#### 挑戦!Docker!
+※テストを追加予定
 
 
