@@ -1,6 +1,10 @@
 本資料は[docker実行環境](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/docker-start.md)がセットアップされていることを前提とした資料になります。
 
 ### webサーバの構築
+- コンテナを作成する流れ
+  1. コンテナの元になるファイル(image)をダウンロード
+  1. imageを使ってコンテナを作成
+  1. 動作テスト
 ---
 #### imageの取得
 
