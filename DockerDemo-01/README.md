@@ -16,7 +16,7 @@ dockerで指定された構成を組むにあたっての基本を学ぶこと�
 $ docker exec -it wordpress bash  
 
 $ bash -c "tar xvfz /root/node_exporter-1.5.0.linux-amd64.tar.gz &&
-./node_exporter-1.5.0.linux-amd64/node_exporter
+./node_exporter-1.5.0.linux-amd64/node_exporter"
 ```
 
 - 監視システムの確認
