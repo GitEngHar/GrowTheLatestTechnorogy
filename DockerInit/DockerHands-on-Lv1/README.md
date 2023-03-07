@@ -1,5 +1,6 @@
 ### DockerHands-on-Lv1の目的
 - Dockerの基本操作を理解して使える
+  - コンテナ操作の基本を実践しdockerを触れるようになること
 
 ### Dockerセクションについて
 1. section1 webサーバーの構築と動作確認
