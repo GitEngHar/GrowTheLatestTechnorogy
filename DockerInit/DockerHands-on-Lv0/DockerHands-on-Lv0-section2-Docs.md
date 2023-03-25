@@ -14,7 +14,12 @@
 - Docker Client
   - Dockerには多くのコマンドがあるよ。
   - 例：Docker run (コンテナを起動)、Docker image pull (イメージ)
+  - DockerClientはコマンドの入力をHostに伝えるよ
 - Docker Host
   - DockerDeamonが動いてるNode（サーバ等々）
-  - DockerEngineの上にコンテナは動いていて、DockerEngineはサーバの上で動いてるよ
-- 
+    - Daemonはサーバ上でずっと動いているプログラムだよ  
+  - Dockerホスト上でコンテナは動いてるよ
+- Dockerレジストリ
+  - DockerのImageを置いておく場所だよ
+  - githubとにていて、プライベート、パブリックで保管ができる
+  - Dockerレジストリから欲しいimageをローカルにダウンロードするよ 
