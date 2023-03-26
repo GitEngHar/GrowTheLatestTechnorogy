@@ -76,9 +76,11 @@ Client:
 Docker Desktopのプロセスを停止してみてみると、ホストのdeamonが起動してないので、commandを受け付けずエラーが返ってきている。
 
 ### イメージを使ってコンテナをbuildする
-コンテナはイメージファイルをもとに構築(build)されるよ
-コンテナは役割のある仮想化の資源(リソース)で、webサーバだったりログの収集コンテナだったり、色々なコンテナを作成できる
-基本的には1つコンテナは1つの役割で、webサーバコンテナとログ収集コンテナは分けて作られてたりする
+コンテナはイメージファイルをもとに構築(build)される
+
+コンテナは役割のある仮想化システムの資源(リソース)で、webサーバだったりログの収集コンテナだったり、色々なコンテナを作成できる
+
+基本的には1コンテナは1つの役割で、webサーバ専用コンテナとログ収集専用コンテナのように作られる
 
 ```
 
@@ -114,3 +116,30 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 182b4eeb816a   httpd     "httpd-foreground"   17 seconds ago   Up 14 seconds   80/tcp    web-test
 
 ```
+
+上の実装でコンテナライフサイクルを説明してみる。
+
+> ### webサーバ(httpd)のimageを取得する
+$  docker image pull httpd
+
+docker imageをdockerリポジトリから取得している。
+以下のログに注目。
+
+> Using default tag: latest
+latest: Pulling from library/httpd
+f1f26f570256: Pull complete
+a6b093ae1967: Pull complete
+6b400bbb27df: Pull complete
+d9833ead928a: Pull complete
+ace056404ed3: Pull complete
+
+imageにはタグというものがついており、image名:タグでバージョンごとにimageを分けることができている。
+
+` Using default tag: latest ` このログはデフォルトでlatest(最新版)がダウンロードされるように設定されてある。実行したコマンド` docker image pull httpd `を見ると、バージョンを何も指定していないのがわかる。
+
+`latest: Pulling from library/httpd` 最新版のhttpdイメージがdockerレジストリから取得されようとしている。ちなみに、docker レジストリはimageがおかれる場所です。
+
+imageをpull(ダウンロード)した後にrunでコンテナを構築することでコンテナを起動させます。これがDockerのライフサイクルです。
+
+ちなみに、imageが存在しなくても` docker run --name web-nginx nginx `等でコンテナを構築するコマンドを実行しても、imageが自動的にpullされコンテナが構築されます。試してみてください！！
+
