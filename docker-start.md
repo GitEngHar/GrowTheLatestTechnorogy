@@ -9,3 +9,8 @@ https://docs.docker.jp/docker-for-windows/install.html
 
 #### Macの場合は下記リンク
 https://docs.docker.jp/docker-for-mac/install.html
+
+
+#### Windows Install後おすすめツール
+
+https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=ja-jp&gl=jp&rtc=1
