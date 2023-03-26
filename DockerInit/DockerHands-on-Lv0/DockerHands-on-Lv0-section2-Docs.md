@@ -119,7 +119,7 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 
 上の実装でコンテナライフサイクルを説明してみる。
 
-> ### webサーバ(httpd)のimageを取得する
+> webサーバ(httpd)のimageを取得する
 $  docker image pull httpd
 
 docker imageをdockerリポジトリから取得している。
@@ -142,4 +142,3 @@ imageにはタグというものがついており、image名:タグでバージ
 imageをpull(ダウンロード)した後にrunでコンテナを構築することでコンテナを起動させます。これがDockerのライフサイクルです。
 
 ちなみに、imageが存在しなくても` docker run --name web-nginx nginx `等でコンテナを構築するコマンドを実行しても、imageが自動的にpullされコンテナが構築されます。試してみてください！！
-
