@@ -75,3 +75,42 @@ Client:
 
 Docker Desktopのプロセスを停止してみてみると、ホストのdeamonが起動してないので、commandを受け付けずエラーが返ってきている。
 
+### イメージを使ってコンテナをbuildする
+コンテナはイメージファイルをもとに構築(build)されるよ
+コンテナは役割のある仮想化の資源(リソース)で、webサーバだったりログの収集コンテナだったり、色々なコンテナを作成できる
+基本的には1つコンテナは1つの役割で、webサーバコンテナとログ収集コンテナは分けて作られてたりする
+
+```
+
+### 今ダウンロード済みのimageを確認(何も取得済みのimageはなさそう)
+$  docker image ls
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+### webサーバ(httpd)のimageを取得する
+$  docker image pull httpd
+Using default tag: latest
+latest: Pulling from library/httpd
+f1f26f570256: Pull complete
+a6b093ae1967: Pull complete
+6b400bbb27df: Pull complete
+d9833ead928a: Pull complete
+ace056404ed3: Pull complete
+Digest: xxxxx
+Status: Downloaded newer image for httpd:latest
+docker.io/library/httpd:latest
+
+### ダウンロードしたimageを確認してみる
+$ docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+httpd        latest    192d41583429   3 days ago   145MB
+
+### webサーバのコンテナを作成してみる
+$ docker run -d --name web-test httpd
+182b4eeb816a3d732177953714aab5833c439c9539faf32a69e91dfae4eaa8ab
+
+### コンテナの起動を確認
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS     NAMES
+182b4eeb816a   httpd     "httpd-foreground"   17 seconds ago   Up 14 seconds   80/tcp    web-test
+
+```
