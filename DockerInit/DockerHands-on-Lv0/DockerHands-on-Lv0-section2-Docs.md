@@ -9,7 +9,7 @@
 ![image](https://user-images.githubusercontent.com/119464648/227698270-fb13cfda-f57c-4687-959d-bb35512e15da.png)
 
 #### わかった気になれる用語
-
+資料と照らし合わせて見てみてください
 - コンテナイメージ(Container Image)
   - コンテナを作るときに元になるファイルだよ
   - Imageにはwebサーバやwebアプリケーションがあり、カスタマイズすることもできるよ
