@@ -30,7 +30,9 @@
 ### やってみよう
 
 #### DockerClientとDockerHost
+DockerClientの役割を理解してみる
 
+Dockerデーモンにコマンドを伝えている様子をログを通して確認してみる
 ```
 ### docker versionでClientとHost(Server)情報を出力
 $ docker version
@@ -76,6 +78,9 @@ Client:
 Docker Desktopのプロセスを停止してみてみると、ホストのdeamonが起動してないので、commandを受け付けずエラーが返ってきている。
 
 ### イメージを使ってコンテナをbuildする
+
+コンテナライフサイクルを一通り実践してみよう
+
 コンテナはイメージファイルをもとに構築(build)される
 
 コンテナは役割のある仮想化システムの資源(リソース)で、webサーバだったりログの収集コンテナだったり、色々なコンテナを作成できる
