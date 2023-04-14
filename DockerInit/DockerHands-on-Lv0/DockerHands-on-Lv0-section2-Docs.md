@@ -15,92 +15,20 @@
 
 ### やってみよう
 
-#### DockerClientとDockerHost
-DockerClientの役割を理解してみる
+#### runコマンドを実行する
 
-Dockerデーモンにコマンドを伝えている様子をログを通して確認してみる
-```
-### docker versionでClientとHost(Server)情報を出力
-$ docker version
-Client:
- Cloud integration: v1.0.29
- Version:           20.10.22
- API version:       1.41
- Go version:        go1.18.9
- Git commit:        3a2c30b
- Built:             Thu Dec 15 22:36:18 2022
- OS/Arch:           windows/amd64
- Context:           default
- Experimental:      true
+実行形式
+` docker run httpd -p 80:8080 `
 
-Server: Docker Desktop 4.16.2 (95914)
- Engine:
-  Version:          20.10.22
-  API version:      1.41 (minimum version 1.12)
-  Go version:       go1.18.9
-  Git commit:       42c8b31
-  Built:            Thu Dec 15 22:26:14 2022
-  OS/Arch:          linux/amd64
-～～省略
-```
-docker clientがdocker hostのdeamonに対してversionを教えろ！って要求して帰ってきているよ
+| コマンド                | 説明                   |
+|---------------------|----------------------|
+| docker              | docker機能を利用するコマンド    |
+| run                 | imageを指定してコンテナを作成、起動 |
+| -p 接続側ポート:ホスト側ポート | コンテナに接続するポート番号を設定    |
+
+
 
 ```
-### deamonを起動していないときの出力
-$ docker version
-error during connect: This error may indicate that the docker daemon is not running.: Get "http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/version": open //./pipe/docker_engine: The system cannot find the file specified.
-Client:
- Cloud integration: v1.0.29
- Version:           20.10.22
- API version:       1.41
- Go version:        go1.18.9
- Git commit:        3a2c30b
- Built:             Thu Dec 15 22:36:18 2022
- OS/Arch:           windows/amd64
- Context:           default
- Experimental:      true
-```
-
-Docker Desktopのプロセスを停止してみてみると、ホストのdeamonが起動してないので、commandを受け付けずエラーが返ってきている。
-
-### イメージを使ってコンテナをbuildする
-
-コンテナライフサイクルを一通り実践してみよう
-
-ざっくりな手順(imageファイルをレジストリから取得 → imageをもとにコンテナを作成)
-
-```
-
-### 今ダウンロード済みのimageを確認(何も取得済みのimageはなさそう)
-$  docker image ls
-REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
-
-### webサーバ(httpd)のimageを取得する
-$  docker image pull httpd
-Using default tag: latest
-latest: Pulling from library/httpd
-f1f26f570256: Pull complete
-a6b093ae1967: Pull complete
-6b400bbb27df: Pull complete
-d9833ead928a: Pull complete
-ace056404ed3: Pull complete
-Digest: xxxxx
-Status: Downloaded newer image for httpd:latest
-docker.io/library/httpd:latest
-
-### ダウンロードしたimageを確認してみる
-$ docker image ls
-REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
-httpd        latest    192d41583429   3 days ago   145MB
-
-### webサーバのコンテナを作成してみる
-$ docker run -d --name web-test httpd
-182b4eeb816a3d732177953714aab5833c439c9539faf32a69e91dfae4eaa8ab
-
-### コンテナの起動を確認
-$ docker ps
-CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS     NAMES
-182b4eeb816a   httpd     "httpd-foreground"   17 seconds ago   Up 14 seconds   80/tcp    web-test
 
 ```
 
