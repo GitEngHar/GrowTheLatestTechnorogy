@@ -15,45 +15,56 @@
 
 ### やってみよう
 
-#### runコマンドを実行する
+webサーバのコンテナを作成して動作確認をする
 
-実行形式
-` docker run httpd -p 80:8080 `
+imageファイルを取得してコンテナを作成しよう
+
+
+1. imageファイルを取得する
+
+| コマンド       | 説明                 |
+|------------|--------------------|
+| docker     | docker機能を利用するコマンド  |
+| image pull | imageファイルを取得するコマンド |
+
+`docker pull httpd` を実行してImageファイルを取得する。
+
+```
+$ docker pull httpd
+latest: Pulling from library/httpd
+docker.io/library/httpd:latest
+```
+
+2. webサーバコンテナを作成し起動する
 
 | コマンド                | 説明                   |
 |---------------------|----------------------|
-| docker              | docker機能を利用するコマンド    |
-| run                 | imageを指定してコンテナを作成、起動 |
-| -p 接続側ポート:ホスト側ポート | コンテナに接続するポート番号を設定    |
+| run                 | imageを指定してコンテナを作成、起動するコマンド |
+| -p DockerHostアドレス:ホストポート:コンテナポート | コンテナに接続するアドレスとポート番号を設定   |
+| -d | コンテナプロセスが裏側で動作します。設定しないと表側で動作、ターミナルを占有します。   |
 
-
-
-```
+` docker run -d -p 127.0.0.1:8080:80 httpd `を実行してコンテナを作成して起動する。
 
 ```
+$ docker run -d -p 127.0.0.1:8080:80 httpd
+36e334489a262a89372ebb4a9a6bbcf6d449eaeff5780188fcfb8c3fb473e1e7
+```
 
-上の実装でコンテナライフサイクルを説明してみる。
 
-> webサーバ(httpd)のimageを取得する
-$  docker image pull httpd
+3. コンテナの動作を確認する
 
-docker imageをdockerリポジトリから取得している。
-以下のログに注目。
+| コマンド       | 説明                 |
+|------------|--------------------|
+| ps | コンテナの一覧を表示 |
 
-> Using default tag: latest
-latest: Pulling from library/httpd
-f1f26f570256: Pull complete
-a6b093ae1967: Pull complete
-6b400bbb27df: Pull complete
-d9833ead928a: Pull complete
-ace056404ed3: Pull complete
+` docker ps `を実行して作成したコンテナを確認する
 
-imageにはタグというものがついており、image名:タグでバージョンごとにimageを分けることができている。
+```
+$  docker ps
+CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          PORTS                    NAMES
+36e334489a26   httpd     "httpd-foreground"   11 minutes ago   Up 11 minutes   127.0.0.1:8080->80/tcp   cool_black
+```
 
-` Using default tag: latest ` このログはデフォルトでlatest(最新版)がダウンロードされるように設定されてある。実行したコマンド` docker image pull httpd `を見ると、バージョンを何も指定していないのがわかる。
+webコンテナにアクセスする
+http://127.0.0.1:8080
 
-`latest: Pulling from library/httpd` 最新版のhttpdイメージがdockerレジストリから取得されようとしている。ちなみに、docker レジストリはimageがおかれる場所です。
-
-imageをpull(ダウンロード)した後にrunでコンテナを構築することでコンテナを起動させます。これがDockerのライフサイクルです。
-
-ちなみに、imageが存在しなくても` docker run --name web-nginx nginx `等でコンテナを構築するコマンドを実行しても、imageが自動的にpullされコンテナが構築されます。試してみてください！！
