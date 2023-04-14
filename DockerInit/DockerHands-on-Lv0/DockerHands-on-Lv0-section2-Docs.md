@@ -67,4 +67,3 @@ CONTAINER ID   IMAGE     COMMAND              CREATED          STATUS          P
 
 webコンテナにアクセスする
 http://127.0.0.1:8080
-
