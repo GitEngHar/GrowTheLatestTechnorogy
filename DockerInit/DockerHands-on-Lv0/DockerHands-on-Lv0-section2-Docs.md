@@ -4,28 +4,16 @@
 ### 内容
 取り掛かる前にDockerセットアップ☞[docker実行環境](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/docker-start.md)
 
-コンテナをアプリケーションのエンドポイントだとすると、下の画像ではDockerがアプリケーションを設置するまでの流れを表しているよ。
-
+#### Docker Appに接続まで
 ![image](https://user-images.githubusercontent.com/119464648/227698270-fb13cfda-f57c-4687-959d-bb35512e15da.png)
 
-#### わかった気になれる用語
-資料と照らし合わせて見るとよさそう
-- コンテナイメージ(Container Image)
-  - コンテナを作るときに元になるファイルだよ
-  - Imageにはwebサーバやwebアプリケーションがあり、カスタマイズすることもできるよ
-- Docker Client
-  - Dockerには多くのコマンドがあるよ。
-  - 例：Docker run (コンテナを起動)、Docker image pull (イメージ)
-    - docker buildもコマンドで、dockerfileといわれるファイルを読み込んでimageを作ってくれるよ 
-  - DockerClientはコマンドの入力をHostに伝えるよ
-- Docker Host
-  - DockerDeamonが動いてるNode（サーバ等々）
-    - Daemonはサーバ上でずっと動いているプログラムだよ  
-  - Dockerホスト上でコンテナは動いてるよ
-- Dockerレジストリ
-  - DockerのImageを置いておく場所だよ
-  - githubとにていて、プライベート、パブリックで保管ができる
-  - Dockerレジストリから欲しいimageをローカルにダウンロードするよ 
+[Link](https://lucid.app/lucidchart/866ecd6c-b04d-4d22-85b8-05d3eb88be21/edit?invitationId=inv_000ea0a9-a973-4597-82b9-347d42da4e5f&page=0_0#)
+
+#### ライフサイクルの説明
+![docker ライフサイクル図 (1)](https://user-images.githubusercontent.com/119464648/231908418-25ee8d27-f87d-465a-87c0-99c3ad602877.png)
+
+
+
 
 ### やってみよう
 
