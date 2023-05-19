@@ -5,7 +5,8 @@
 取り掛かる前にDockerセットアップ☞[docker実行環境](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/docker-start.md)
 
 #### Docker Appに接続まで
-![docker ライフサイクル図 (1)](https://user-images.githubusercontent.com/119464648/231908418-25ee8d27-f87d-465a-87c0-99c3ad602877.png)
+![docker ライフサイクル図 (2)](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/663c31cc-01a3-48ed-85b6-aa55507815d2)
+
 
 [Link](https://lucid.app/lucidchart/866ecd6c-b04d-4d22-85b8-05d3eb88be21/edit?invitationId=inv_000ea0a9-a973-4597-82b9-347d42da4e5f&page=0_0#)
 
