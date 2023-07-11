@@ -1,7 +1,8 @@
 # GrowTheLatestTechnorogy
 
 ## 目的
-最先端技術をベースとした技術を楽しむこと🎉
+Kubernetes・Dockerのスキルを習得して、よりスキルを充実させよう～！
+
 
 ### GLTサイクルモデル
 <details>
