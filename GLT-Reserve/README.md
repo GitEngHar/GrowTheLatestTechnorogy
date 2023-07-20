@@ -3,7 +3,7 @@
 
 ## Docker・Githubを利用する環境を構築する
 
-### 必要なもの
+### 必要なものと環境構築
 - InterNetに接続できるPC
 - DockerHubのアカウント
   - お持ちでない方は[こちら](https://hub.docker.com/signup/)で作成してください(作成は無料です)
