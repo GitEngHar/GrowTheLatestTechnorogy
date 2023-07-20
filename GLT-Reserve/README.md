@@ -1,10 +1,13 @@
 # ディレクトリの目的
 ここではGLTでDockerを習得するための環境構築と知識を身に着けます
 
-## Docker・Githubを利用する環境を構築する
+## Docker・Githubを利用・開発できる環境を構築する
 
 ### 必要なものと環境構築
 - InterNetに接続できるPC
+- vsCodeInstall
+  - こちらから[お使いのOS](https://code.visualstudio.com/download)に合わせてInstallしてください
+    - installで迷った場合は[こちら](https://www.javadrive.jp/vscode/install/index1.html)を参考にしてください 
 - DockerHubのアカウント
   - お持ちでない方は[こちら](https://hub.docker.com/signup/)で作成してください(作成は無料です)
 - GitHubのアカウント
