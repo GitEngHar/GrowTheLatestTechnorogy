@@ -1,15 +1,23 @@
-### ディレクトリの目的
+# ディレクトリの目的
 ここではGLTでDockerを習得するための環境構築と知識を身に着けます
+
+## Docker・Githubを利用する環境を構築する
+
+### 必要なもの
+- InterNetに接続できるPC
+- DockerHubのアカウント
+  - お持ちでない方は[こちら](https://hub.docker.com/signup/)で作成してください(作成は無料です)
+- GitHubのアカウント
+  - お持ちでない方は[こちら](https://reffect.co.jp/html/create_github_account_first_time/)を参考に作成してください(作成は無料です)
+  - 開発者として参加する場合はコラボレーターに登録されている必要があります
+    - GitEngHarから招待される必要があるため連絡してください
 
 ### Dockerの動作環境
 公式で提供されている無料の環境があるので[こちら](https://labs.play-with-docker.com/)を利用します
 
-#### 必要なもの
-- InterNetに接続できるPC
-- DockerHubのアカウント
-  - お持ちでない方は[こちら](https://hub.docker.com/signup/)で作成してください(作成は無料です)
+## Githubで何ができるのか・何をするのかを知る
 
-### Github
+### 概要
 GLTではGithubを利用しコンテンツ制作等を行っていきます
 以下のようなユースケースでGithubの機能が使われます
 ユースケースごとにどんな機能を使えばいいのかを大雑把に記載しています
