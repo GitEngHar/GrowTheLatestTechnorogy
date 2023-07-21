@@ -1,5 +1,6 @@
 # ディレクトリの目的
 ここではGLTでDockerを習得するための環境構築と知識・技術を身に着けます
+Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築する
 
 ## Docker・Githubを利用・開発できる環境を構築する
 
@@ -27,6 +28,7 @@ GLTではGithubを利用しコンテンツ制作等を行っていきます
 
 #### 制作物の過程を記録したい・バグを改修した記録を残したい
 [Issue機能](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues)を用いて掲示板のように記録を蓄積できます
+
 Issueの例を見ると用途が想像しやすいとおもわれます。([こちら](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues/1)から確認)
 
 #### 制作物をGithubへアップロードしたい
@@ -49,6 +51,7 @@ PRの例は[こちら](https://github.com/GitEngHar/GrowTheLatestTechnorogy/pull
 ![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/04488073-768a-4d7a-bda2-d4c094655328)
 
 上画像中の ` https://~省略~ ` をコピーし以下のようにローカルへコピーできます
+
 docker環境でgithubを扱う想定なのでコマンドのInstallは不要です。前述で紹介してある環境ではgitコマンドが初めから利用できます
 
 ```
