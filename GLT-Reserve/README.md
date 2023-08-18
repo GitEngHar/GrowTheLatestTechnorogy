@@ -23,4 +23,4 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
 [LinuxBaseSkill](https://github.com/GitEngHar/GrowTheLatestTechnorogy/tree/main/GLT-Reserve/LinuxBaseSkill)で実施します
 
 ### Githubで何ができるのか・何をするのかを知る
-[GithubUsecase.md](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/GLT-Reserve/GithubUsecase.md)https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/GLT-Reserve/GithubUsecase.md にGLTで行うGithubの操作が集約されています
+[GithubUsecase.md](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/GLT-Reserve/GithubUsecase.md)にGLTで行うGithubの操作が集約されています
