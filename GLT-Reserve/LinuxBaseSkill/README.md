@@ -13,4 +13,4 @@ Linux環境でよく使われるコマンドをテスト形式で実践し習得
     - 入力例 : LinuxBaseSkill GitEngHar
 ![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/b7c23b96-59fd-406c-b533-c4bd10648067)
 - Issue内の手順を実施し、採点は(自己採点ではないです)行う(起票したIssueで最終的に100点となるような解答になればＯＫ)
-- [アンケートの内容](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues/25)https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues/25を確認し、FBを記載してください
+- [アンケートの内容](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues/25)を確認し、FBを記載してください
