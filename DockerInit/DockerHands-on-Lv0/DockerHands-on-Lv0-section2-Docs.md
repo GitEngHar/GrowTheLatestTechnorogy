@@ -5,7 +5,7 @@
 [GLT-Reserve](https://github.com/GitEngHar/GrowTheLatestTechnorogy/tree/main/GLT-Reserve)を終えていること
 
 ## 実行環境
-[Docker Playground](https://labs.play-with-docker.com/)を終えていること
+[Docker Playground](https://labs.play-with-docker.com/)で実施します
 
 ## Dockerライフサイクルを学ぶ
 ### ライフサイクルの全体図
