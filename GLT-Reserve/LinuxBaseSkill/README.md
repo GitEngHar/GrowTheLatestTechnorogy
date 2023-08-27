@@ -1,8 +1,11 @@
 # LinuxBaseSkillの目的
+
 Linux環境でよく使われるコマンドをテスト形式で実践し習得すること
 
 ## 習得手順
+
 ### トレーニング用Issueを起票
+
 - [Issue](https://github.com/GitEngHar/GrowTheLatestTechnorogy/issues)画面に遷移
 - NewIssueを選択しIssue作成画面へ遷移
 ![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/bf8cd31d-e201-4676-924b-b1ce86897a73)
