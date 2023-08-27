@@ -1,10 +1,18 @@
-# ディレクトリの目的
+# GLT-Reserveでの目的
+
 ここではGLTでDockerを習得するための環境構築と知識・技術を身に着けます
 Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築する
+
+## 進め方
+
+1. **Docker・Githubを利用・開発できる環境を構築する** で 作業環境を構築します
+2. **Linuxの基本的な操作をテスト・習得しよう** で Linuxの基本操作を習得します
+3. **Githubで何ができるのか・何をするのかを知る** で GLTで利用するGithubの操作を把握しておきます
 
 ## Docker・Githubを利用・開発できる環境を構築する
 
 ### 必要なものと環境構築
+
 - InterNetに接続できるPC
 - vsCodeInstall
   - こちらから[お使いのOS](https://code.visualstudio.com/download)に合わせてInstallしてください
@@ -17,10 +25,13 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
     - GitEngHarから招待される必要があるため連絡してください
 
 ### Dockerの動作環境
+
 公式で提供されている無料の環境があるので[こちら](https://labs.play-with-docker.com/)を利用します
 
-### Linuxの基本的な操作をテスト・習得しよう
+## Linuxの基本的な操作をテスト・習得しよう
+
 [LinuxBaseSkill](https://github.com/GitEngHar/GrowTheLatestTechnorogy/tree/main/GLT-Reserve/LinuxBaseSkill)で実施します
 
-### Githubで何ができるのか・何をするのかを知る
+## Githubで何ができるのか・何をするのかを知る
+
 [GithubUsecase.md](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/GLT-Reserve/GithubUsecase.md)にGLTで行うGithubの操作が集約されています
