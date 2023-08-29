@@ -25,7 +25,7 @@ DockerHands-onでは自己紹介ページの制作をします
 内容を決めたらサイトの見た目を html で作成しましょう(例ではGLTのQ&Aを制作しています。項目と答えがある形式であれば何でも良いです)
 
 #### 作成例 GLT Q&Aページ
-![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/d870dc3d-7e59-4eb6-bd0e-cfd436ed826b)
+![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/9a737438-4cfc-4669-b41c-f195f5f7d248)
 
 <details>
 <summary> Q&Aのhtml </summary>
