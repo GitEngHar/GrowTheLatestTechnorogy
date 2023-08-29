@@ -22,10 +22,9 @@ DockerHands-onでは自己紹介ページの制作をします
 1. どんな情報を盛り込むのか
 1. どんな見た目のサイトになるのか
 
-内容を決めたらサイトの見た目を powerpoint などで作成しましょう
+内容を決めたらサイトの見た目を html で作成しましょう(例ではGLTのQ&Aを制作しています。項目と答えがある形式であれば何でも良いです)
 
-htmlで作成してみても問題ないです(例ではGLTのQ&Aを制作しています。項目と答えがある形式であれば何でも良いです)
-
+#### 作成例 GLT Q&Aページ
 ![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/d870dc3d-7e59-4eb6-bd0e-cfd436ed826b)
 
 <details>
