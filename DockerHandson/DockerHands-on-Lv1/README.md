@@ -106,13 +106,6 @@ DockerHands-onでは自己紹介ページの制作をします
 2. dockerコマンドでclientの8080portからサーバ(コンテナ)の80portに接続するhttpdコンテナを立てましょう
 3. サーバが起動しているか確認 ( `docker ps` によるコンテナ状態を確認するか or ブラウザを開いてwebページにアクセスするか)
 
-vim を install <https://qiita.com/m-m00/items/a042bf9d5c7c85a64895>
-htmlページを移行(vim htdocs/index.html)
-vim を 日本語設定(<https://qiita.com/m-m00/items/a042bf9d5c7c85a64895>)
-ここで起動すると..文字化ける
-encode設定　<https://web-camp.io/magazine/archives/96334>
-作成途中..
-
 #### 2-3 自分のwebページをDockerPlayGroundで作成しよう
 
 サーバ起動時に設定されている初期webページは httpd の場合、 `htdocs/index.html` になります
