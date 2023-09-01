@@ -97,9 +97,9 @@ DockerHands-onでは自己紹介ページの制作をします
 #### 2-2 Dockerplayground環境でwebコンテナを起動する
 
 - 手順
-  1. 開発環境(DockerPlayGround)にsshする (参考)
-  2. dockerコマンドで `8080port` で接続できるwebコンテナを立てる (参考)
-  3. サーバが起動しているか確認　(参考)
+  1. 開発環境(DockerPlayGround)にsshする ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
+  2. dockerコマンドで `8080port` で接続できるwebコンテナを立てる ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
+  3. サーバ(コンテナ)が起動しているか確認　([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
 
 #### 2-3 自分のwebページをDockerPlayGroundで作成しよう
 
@@ -107,17 +107,17 @@ DockerHands-onでは自己紹介ページの制作をします
   - サーバ起動時に設定されている初期webページは httpd の場合、 `htdocs/index.html` になります
   - `htdocs/index.html` を編集・上書きコピーすることで自分の公開したいページを表示することができます(httpd.confに初期表示ページで何を表示するか設定されてありますが、今回は簡単に表示できる方法を選びました)
 - 手順  
-  1. ターミナルで `index.html` ファイルを作成してください (参考)
-  2. `index.html` に全てのユーザーが実行・閲覧・書き込みできる権限を付与してください (参考)
-  3. DockerPlayGroundのEditorを利用して `index.html` の中身を自分のhtmlファイルに置き換えてください (参考)
+  1. ターミナルでDockerホスト(DockerPlayGround環境)に `index.html` ファイルを作成してください ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
+  2. `index.html` に全てのユーザーが実行・閲覧・書き込みできる権限を付与してください ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
+  3. DockerPlayGroundのEditorを利用して `index.html` の中身を自分のhtmlファイルに置き換えてください ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
 
 #### 2-4 コンテナに自分のhtmlを配置してwebページを公開しよう
 
 - 説明
   - webサーバのコンテナ内にある `index.html`ファイル をDockerPlaygroundにある `index.html`ファイル に置き換えることで自分のhtmlページをインターネットに公開します
 - 手順
-  1. Dockerコンテナの `/usr/local/apache2/htdocs/` にindex.htmlをコピーします (参考)
-  2. webページにアクセスしましょう (参考)
+  1. Dockerコンテナの `/usr/local/apache2/htdocs/` にindex.htmlをコピーします ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
+  2. webページにアクセスしましょう ([参考](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#dockerplayground%E3%81%A7%E3%81%97%E3%81%9F%E3%81%84))
 
 自分のページが表示されれば Lv1完了になります。お疲れ様です🎉
 
