@@ -1,33 +1,40 @@
 # webサーバの構築
 
+## 参考資料
+
+**Linux** の操作で分からないことがあれば ココ を見よう  
+**Docker** の操作で分からないことがあれば ココ を見よう  
+**DockerPlayGround** の操作で分からないことがあれば ココ を見よう  
+
 ## 2-1 実行環境にログイン
 
 [Docker Playground](https://labs.play-with-docker.com/)で実施します
 
-## 2-2 Dockerplayground環境でwebコンテナを起動する
+## 2-2 DockerPlayGroundに自分のhtmlファイルをコピーしよう
 
-- 手順
-  1. 開発環境(DockerPlayGround)にsshする ([参考](https://tinyurl.com/5ft9mex7))
-  2. dockerコマンドで `8080port` で接続できるwebコンテナを立てる ([参考](https://tinyurl.com/ybyfkhyr))
-  3. サーバ(コンテナ)が起動しているか確認　([参考](https://tinyurl.com/4bffcpfv))
-
-## 2-3 自分のwebページをDockerPlayGroundで作成しよう
-
-- 説明
-  - サーバ起動時に設定されている初期webページは httpd の場合、 `htdocs/index.html` になります
-  - `htdocs/index.html` を編集・上書きコピーすることで自分の公開したいページを表示することができます(httpd.confに初期表示ページで何を表示するか設定されてありますが、今回は簡単に表示できる方法を選びました)
+- 何をやるのか
+  - DockerPlayGround環境に `index.html` を作成し、自分の `htmlファイル` の中身をコピーしよう
 - 手順  
-  1. ターミナルでDockerホスト(DockerPlayGround環境)に `index.html` ファイルを作成してください ([参考](https://tinyurl.com/324rwrcc))
-  2. `index.html` に全てのユーザーが実行・閲覧・書き込みできる権限を付与してください ([参考](https://tinyurl.com/bdfae7dm))
-  3. DockerPlayGroundのEditorを利用して `index.html` の中身を自分のhtmlファイルに置き換えてください ([参考](https://tinyurl.com/4rwv2b3f))
+  1. ターミナルでDockerホスト(DockerPlayGround環境)に `index.html` ファイルを作成してください
+  2. `index.html` に全てのユーザーが実行・閲覧・書き込みできる権限を付与してください
+  3. DockerPlayGroundのEditorを利用して `index.html` の中身を自分のhtmlファイルに置き換えてください
+
+## 2-3 Dockerplayground環境でwebコンテナを起動する
+
+- 何をやるのか
+  - DockerPlayground環境で `webサーバコンテナ` を作成しよう
+- 手順
+  1. 開発環境(DockerPlayGround)にsshする
+  2. dockerコマンドで `8080port` で接続できるwebコンテナを立てる
+  3. サーバ(コンテナ)が起動しているか確認
 
 ## 2-4 コンテナに自分のhtmlを配置してwebページを公開しよう
 
-- 説明
-  - webサーバのコンテナ内にある `index.html`ファイル をDockerPlaygroundにある `index.html`ファイル に置き換えることで自分のhtmlページをインターネットに公開します
+- 何をやるのか
+  - webサーバのコンテナで自分のwebページを動かして、ブラウザで自己紹介ページを確認しよう
 - 手順
-  1. Dockerコンテナの `/usr/local/apache2/htdocs/` にindex.htmlをコピーします ([参考](https://tinyurl.com/mr2a4v27))
-  2. webページにアクセスしましょう ([参考](https://tinyurl.com/mue84xae))
+  1. Dockerコンテナの `/usr/local/apache2/htdocs/` にindex.htmlをコピーします
+  2. webページにアクセスしましょう
 
 自分のページが表示されれば Lv1完了になります。お疲れ様です🎉
 

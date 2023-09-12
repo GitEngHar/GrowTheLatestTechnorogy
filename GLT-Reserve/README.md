@@ -28,6 +28,10 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
 
 公式で提供されている無料の環境があるので[こちら](https://labs.play-with-docker.com/)を利用します
 
+### Dockerにsshできる環境を整える
+
+こちらを参考に環境を整えてください
+
 ## Linuxの基本的な操作をテスト・習得しよう
 
 [LinuxBaseSkill](https://github.com/GitEngHar/GrowTheLatestTechnorogy/tree/main/GLT-Reserve/LinuxBaseSkill)で実施します
