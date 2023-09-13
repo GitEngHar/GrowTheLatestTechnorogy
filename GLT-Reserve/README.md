@@ -16,7 +16,7 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
 - InterNetに接続できるPC
 - vsCodeInstall
   - こちらから[お使いのOS](https://code.visualstudio.com/download)に合わせてInstallしてください
-    - installで迷った場合は[こちら](https://www.javadrive.jp/vscode/install/index1.html)を参考にしてください 
+    - installで迷った場合は[こちら](https://www.javadrive.jp/vscode/install/index1.html)を参考にしてください  
 - DockerHubのアカウント
   - お持ちでない方は[こちら](https://hub.docker.com/signup/)で作成してください(作成は無料です)
 - GitHubのアカウント
