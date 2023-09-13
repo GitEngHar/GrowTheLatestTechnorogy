@@ -11,7 +11,7 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
 
 ## Docker・Githubを利用・開発できる環境を構築する
 
-### 必要なものと環境構築
+### ①必要なものと環境構築
 
 - InterNetに接続できるPC
 - vsCodeInstall
@@ -24,13 +24,13 @@ Linuxの基礎知識を身に着ける / Dockerが動作できる環境を構築
   - 開発者として参加する場合はコラボレーターに登録されている必要があります
     - GitEngHarから招待される必要があるため連絡してください
 
-### Dockerの動作環境
+### ②Dockerの動作環境
 
 公式で提供されている無料の環境があるので[こちら](https://labs.play-with-docker.com/)を利用します
 
-### Dockerにsshできる環境を整える
+### ③Dockerにsshできる環境を整える
 
-こちらを参考に環境を整えてください
+[こちら](https://github.com/GitEngHar/GrowTheLatestTechnorogy/blob/main/GLT-Reserve/sshToDocker.md)を参考に環境を整えてください
 
 ## Linuxの基本的な操作をテスト・習得しよう
 
