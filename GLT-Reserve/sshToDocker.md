@@ -20,4 +20,4 @@
 
 
 6. DockerPlayGroundに接続する
-[こちら](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#%E6%89%8B%E5%85%83%E3%81%AEpc%E3%81%8B%E3%82%89dockerplayground%E3%81%ABssh%E3%81%97%E3%81%9F%E3%81%84)https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#%E6%89%8B%E5%85%83%E3%81%AEpc%E3%81%8B%E3%82%89dockerplayground%E3%81%ABssh%E3%81%97%E3%81%9F%E3%81%84を参考に接続してください  
+[こちら](https://github.com/GitEngHar/GrowTheLatestTechnorogy/wiki/~DockerPlayGround%E5%81%8F~-%E2%97%8B%E2%97%8B%E3%81%97%E3%81%9F%E3%81%84-%E3%81%8C%E6%9B%B8%E3%81%84%E3%81%A6%E3%81%82%E3%82%8B%E8%B3%87%E6%96%99#%E6%89%8B%E5%85%83%E3%81%AEpc%E3%81%8B%E3%82%89dockerplayground%E3%81%ABssh%E3%81%97%E3%81%9F%E3%81%84)を参考に接続してください  
