@@ -127,16 +127,16 @@ Amazon Elastic Container Service → クラスター → ＜作成されたク�
 3. タスク定義ファミリーを `backend-task` を選択
 4. サービス名を `backend-svc` を入力してください
 5. ネットワーキングの設定を以下に従ってください
-  -  サブネットは `publicsubnet`
-  -  securitygroup
-    - front は public-sg
-    - back は mysql-sg 
+    -  サブネットは `publicsubnet`
+    -  securitygroup
+        - front は public-sg
+        - back は mysql-sg 
 6. パブリックIPはONにしておく
 7. ロードバランシング(backend-svcのみ)
-  - ロードバランサーの種類は「Application Load Balancer」を選択
-  - 新しいロードバランサーの作成を選択
-  - ロードバランサー名に「backend-alb」を入力
-  - ターゲットグループ名に「backend-grp」を入力
+    - ロードバランサーの種類は「Application Load Balancer」を選択
+    - 新しいロードバランサーの作成を選択
+    - ロードバランサー名に「backend-alb」を入力
+    - ターゲットグループ名に「backend-grp」を入力
 以上で作成
 8. frontも同様の手順で実施する
 
