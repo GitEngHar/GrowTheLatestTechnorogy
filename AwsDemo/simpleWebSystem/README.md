@@ -103,7 +103,7 @@ Amazon ECR > リポジトリ > 作成したリポジトリ
 1. Amazon Elastic Container Service → タスク定義 から 「新しいタスク定義の作成」を選択してください  
 2. タスク名(タスク定義ファミリー名)は backend-task
 3. コンテナの詳細
-    1. 名前は任意
+    1. backend-task
     2. イメージURIはECRに登録したイメージのURI(以下を参考)※図中で青く選択されている部分をクリックするとURIをコピーできます
       ![image](https://github.com/GitEngHar/GrowTheLatestTechnorogy/assets/119464648/b97bcefe-6354-4709-a7f2-62050be5633c)
     3. コンテナポートを8000に設定
@@ -120,11 +120,23 @@ Amazon ECR > リポジトリ > 作成したリポジトリ
 
 ### 9 フロント・バックエンド　各サービスを作成する
 1. クラスタを作成
-Amazon Elastic Container Service → クラスタ から「クラスタの作成」を選択し、任意の名前でクラスタを作成してください
+Amazon Elastic Container Service → クラスタ から「クラスタの作成」を選択し、simpleWebSystem でクラスタを作成してください
 2. 作成したクラスタにバックエンドサービスを作成する
 Amazon Elastic Container Service → クラスター → ＜作成されたクラスタ名＞ → サービス  
 画面下部の「作成」を選択  
 3. タスク定義ファミリーを `backend-task` を選択
-4. サービス名を `backend`
+4. サービス名を `backend-svc` を入力してください
+5. ネットワーキングの設定を以下に従ってください
+  -  サブネットは `publicsubnet`
+  -  securitygroup
+    - front は public-sg
+    - back は mysql-sg 
+6. パブリックIPはONにしておく
+7. ロードバランシング(backend-svcのみ)
+  - ロードバランサーの種類は「Application Load Balancer」を選択
+  - 新しいロードバランサーの作成を選択
+  - ロードバランサー名に「backend-alb」を入力
+  - ターゲットグループ名に「backend-grp」を入力
+以上で作成
+8. frontも同様の手順で実施する
 
-### 10 動作確認
