@@ -1,0 +1,5 @@
+pymysql
+fastapi
+pydantic
+uvicorn
+cryptography

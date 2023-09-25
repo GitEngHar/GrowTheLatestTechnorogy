@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <p>入力されたバックエンドから値を取得する</p>
+    <input id="dblink" type="text">
+    <button id="clickEvent" onclick="getCertData();">リクエスト</button>
+    <p id="view"></p>
+    <script  language="javascript" type="text/javascript">
+        async function  getCertData(){
+            target = document.getElementById("view");
+            dbgetLink = document.getElementById("dblink").value;
+            document.getElementById("dblink").value = ""
+            console.log(dbgetLink)
+            var viewText = ""
+            var response = await fetch(dbgetLink);
+            
+            if(!response.ok){
+                viewText = "ResponseError";
+            }            
+            const certRawJsonData = await response.json();
+            const certJsonToStringData = JSON.stringify(certRawJsonData)
+            var fixCertJsonTypeData = certJsonToStringData.replace(/'/g,"\"")
+            fixCertJsonTypeData = fixCertJsonTypeData.replace("\"{{","[{")
+            fixCertJsonTypeData = fixCertJsonTypeData.replace("}}\"","}]")
+            const certJsonData = JSON.parse(fixCertJsonTypeData,(key,value) => {
+                switch(key){
+                    case "skillType":
+                        viewText += `資格スキルの種類 : ${value} <br>`;
+                        break;
+                    case "certName":
+                        viewText += `資格名 : ${value} <br><br>`
+                }
+            })
+            target.innerHTML = viewText;
+            console.log('response.json():', viewText);
+
+        }
+    </script>
+</body>
+
+</html>
