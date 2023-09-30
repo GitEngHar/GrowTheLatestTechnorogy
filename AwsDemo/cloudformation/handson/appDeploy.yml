@@ -1,0 +1,386 @@
+Description:  simpleWebapp formation
+
+Parameters:
+  EnvironmentName:
+    Description: all resource name next prefix
+    Type: String
+  VpcCIDR:
+    Description: vpc ipaddres
+    Type: String
+    Default: 10.0.0.0/18
+  PublicSubnet1CIDR:
+    Description: public cidr ipaddres
+    Type: String
+    Default: 10.0.1.0/24    
+  PublicSubnet2CIDR:
+    Description: public cidr ipaddres
+    Type: String
+    Default: 10.0.2.0/24   
+  PrivateSubnet1CIDR:
+    Description: private cidr ipaddres
+    Type: String
+    Default: 10.0.3.0/24   
+  PrivateSubnet2CIDR:
+    Description: private cidr ipaddres
+    Type: String
+    Default: 10.0.4.0/24     
+
+Transform:
+  - 'AWS:CodeDeployBlueGreen'
+Hooks:
+  CodeDeployBlueGreenHook:
+    Type: 'AWS::CodeDeploy::BlueGreen'
+    Properties:
+      TrafficRoutingConfig:
+        Type: TimeBasedCanary
+        TimeBasedCanary:
+          StepPercentage: 15
+          BakeTimeMins: 5
+      Applications:
+        - Target:
+            Type: 'AWS::ECS::Service'
+            LogicalID: ECSDemoService
+          ECSAttributes:
+            TaskDefinitions:
+              - BlueTaskDefinition
+              - GreenTaskDefinition
+            TaskSets:
+              - BlueTaskSet
+              - GreenTaskSet
+            TrafficRouting:
+              ProdTrafficRoute:
+                Type: 'AWS::ElasticLoadBalancingV2::Listener'
+                LogicalID: ALBListenerProdTraffic
+              TargetGroups:
+                - ALBTargetGroupBlue
+                - ALBTargetGroupGreen
+
+Resources:
+  # TargetGroupの作成
+  ALBTargetGroupBlue:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      HealthCheckIntervalSeconds: 5
+      HealthCheckPath: /
+      HealthCheckPort: '80'
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 2
+      HealthyThresholdCount: 2
+      Matcher:
+        HttpCode: '200'
+      Port: 80
+      Protocol: HTTP
+      Tags:
+        - Key: Group
+          Value: Example
+      TargetType: ip
+      UnhealthyThresholdCount: 4
+      VpcId: !Ref VPC
+  ALBTargetGroupGreen:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties:
+      HealthCheckIntervalSeconds: 5
+      HealthCheckPath: /
+      HealthCheckPort: '80'
+      HealthCheckProtocol: HTTP
+      HealthCheckTimeoutSeconds: 2
+      HealthyThresholdCount: 2
+      Matcher:
+        HttpCode: '200'
+      Port: 80
+      Protocol: HTTP
+      Tags:
+        - Key: Group
+          Value: Example
+      TargetType: ip
+      UnhealthyThresholdCount: 4
+      VpcId: !Ref VPC
+  # ALBの作成
+  ExampleALB:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties:
+      Scheme: internet-facing
+      SecurityGroups:
+        - !Ref SecurityGroupFrontALB
+      Subnets:
+        - !Ref PublicSubnet1
+        - !Ref PublicSubnet2
+      Tags:
+        - Key: Group
+          Value: Example
+      Type: application
+      IpAddressType: ipv4
+  # ALBの本番トラフィック
+  ALBListenerProdTraffic:
+    Type: 'AWS::ElasticLoadBalancingV2::Listener'
+    Properties:
+      DefaultActions:
+        - Type: forward
+          ForwardConfig:
+            TargetGroups:
+              - TargetGroupArn: !Ref ALBTargetGroupBlue
+                Weight: 1
+      LoadBalancerArn: !Ref ExampleALB
+      Port: 80
+      Protocol: HTTP
+  # ALBの本番トラフィックのルール
+  ALBListenerProdRule:
+    Type: 'AWS::ElasticLoadBalancingV2::ListenerRule'
+    Properties:
+      Actions:
+        - Type: forward
+          ForwardConfig:
+            TargetGroups:
+              - TargetGroupArn: !Ref ALBTargetGroupBlue
+                Weight: 1
+      Conditions:
+        - Field: http-header
+          HttpHeaderConfig:
+            HttpHeaderName: User-Agent
+            Values:
+              - Mozilla
+      ListenerArn: !Ref ALBListenerProdTraffic
+      Priority: 1
+  # タスク実行ロール
+  ECSTaskExecutionRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: ''
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+            Action: 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy'
+  # Blueタスクの定義
+  BlueTaskDefinition:
+    Type: 'AWS::ECS::TaskDefinition'
+    Properties:
+      ExecutionRoleArn: !GetAtt 
+        - ECSTaskExecutionRole
+        - Arn
+      ContainerDefinitions:
+        - Name: simpleWebapp
+          Image: '429535751272.dkr.ecr.ap-northeast-1.amazonaws.com/certdbfunction:latest'
+          Essential: true
+          PortMappings:
+            - HostPort: 80
+              Protocol: tcp
+              ContainerPort: 80
+      RequiresCompatibilities:
+        - FARGATE
+      NetworkMode: awsvpc
+      Cpu: '256'
+      Memory: '512'
+      Family: ecs-demo
+  # ECSクラスタの作成
+  ECSDemoCluster:
+    Type: 'AWS::ECS::Cluster'
+    Properties: {}
+  ECSDemoService:
+    Type: 'AWS::ECS::Service'
+    Properties:
+      Cluster: !Ref ECSDemoCluster
+      DesiredCount: 1
+      DeploymentController:
+        Type: EXTERNAL
+  # ブルータスクセット
+  BlueTaskSet:
+    Type: 'AWS::ECS::TaskSet'
+    Properties:
+      Cluster: !Ref ECSDemoCluster
+      LaunchType: FARGATE
+      NetworkConfiguration:
+        AwsVpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref SecurityGroupFrontService
+          Subnets:
+            - !Ref PublicSubnet1
+            - !Ref PublicSubnet2
+      PlatformVersion: 1.4.0
+      Scale:
+        Unit: PERCENT
+        Value: 100
+      Service: !Ref ECSDemoService
+      TaskDefinition: !Ref BlueTaskDefinition
+      LoadBalancers:
+        - ContainerName: DemoApp
+          ContainerPort: 80
+          TargetGroupArn: !Ref ALBTargetGroupBlue
+  # プライマリタスクセット
+  PrimaryTaskSet:
+    Type: 'AWS::ECS::PrimaryTaskSet'
+    Properties:
+      Cluster: !Ref ECSDemoCluster
+      Service: !Ref ECSDemoService
+      TaskSetId: !GetAtt 
+        - BlueTaskSet
+        - Id
+  # VPCの作成とigwのアタッチ
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true 
+      Tags:
+        - Key: Name
+          Value: !Sub vpc-${EnvironmentName}
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub igw-${EnvironmentName}
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+  # サブネットの作成
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: !Ref PublicSubnet1CIDR
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pubsubnet01
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 1, !GetAZs '' ]  
+      CidrBlock: !Ref PublicSubnet2CIDR
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pubsubnet02
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: !Ref PrivateSubnet1CIDR
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pvsubnet01
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 1, !GetAZs '' ]   
+      CidrBlock: !Ref PrivateSubnet2CIDR
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pvsubnet02      
+  # ルートテーブルの作成
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub rtb-${EnvironmentName}-public
+  DefaultPublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  PublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet1
+  PublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet2
+  # セキュリティグループの作成
+  SecurityGroupFrontALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for front alb
+      GroupName: !Sub ${EnvironmentName}-front-alb
+      SecurityGroupIngress: 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-front-alb
+      VpcId: !Ref VPC
+  SecurityGroupFrontService:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for front svc 
+      GroupName: !Sub ${EnvironmentName}-front-svc
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 80
+          ToPort: 80
+          SourceSecurityGroupId: !Ref SecurityGroupFrontALB
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-front-svc
+      VpcId: !Ref VPC
+  SecurityGroupBackALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back alb
+      GroupName: !Sub ${EnvironmentName}-back-alb
+      SecurityGroupIngress: 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          SourceSecurityGroupId: !Ref SecurityGroupFrontService
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-alb
+      VpcId: !Ref VPC
+  SecurityGroupBackService:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back svc 
+      GroupName: !Sub ${EnvironmentName}-back-svc
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 8000
+          ToPort: 8000
+          SourceSecurityGroupId: !Ref SecurityGroupBackALB
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-svc
+      VpcId: !Ref VPC
+  SecurityGroupBackRds:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back rds 
+      GroupName: !Sub ${EnvironmentName}-back-rds
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 3306
+          ToPort: 3306
+          SourceSecurityGroupId: !Ref SecurityGroupBackService
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-rds
+      VpcId: !Ref VPC    
+
+Outputs:
+  #気になることの検証用OUTPUT
+  VPC:
+    Description: sucess vpc created
+    Value: !Ref VPC

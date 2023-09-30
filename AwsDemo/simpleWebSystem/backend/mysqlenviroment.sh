@@ -20,4 +20,4 @@ echo "MYSQL_ENDPOINT?"
 read mysqlendpoint
 export MYSQL_ENDPOINT=$mysqlendpoint
 
-echo "END!"
+echo "-e TB_NAME=$TB_NAME -e DB_NAME=$DB_NAME -e MYSQL_USER_NAME=$MYSQL_USER_NAME -e MYSQL_ENDPOINT=$MYSQL_ENDPOINT"

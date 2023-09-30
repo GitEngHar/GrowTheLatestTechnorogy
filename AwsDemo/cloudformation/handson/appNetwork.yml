@@ -1,0 +1,192 @@
+Description:  simpleWebapp formation
+
+Parameters:
+  EnvironmentName:
+    Description: all resource name next prefix
+    Type: String
+  VpcCIDR:
+    Description: vpc ipaddres
+    Type: String
+    Default: 10.0.0.0/18
+  PublicSubnet1CIDR:
+    Description: public cidr ipaddres
+    Type: String
+    Default: 10.0.1.0/24    
+  PublicSubnet2CIDR:
+    Description: public cidr ipaddres
+    Type: String
+    Default: 10.0.2.0/24   
+  PrivateSubnet1CIDR:
+    Description: private cidr ipaddres
+    Type: String
+    Default: 10.0.3.0/24   
+  PrivateSubnet2CIDR:
+    Description: private cidr ipaddres
+    Type: String
+    Default: 10.0.4.0/24     
+
+Resources:
+  # VPCの作成とigwのアタッチ
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !Ref VpcCIDR
+      EnableDnsSupport: true
+      EnableDnsHostnames: true 
+      Tags:
+        - Key: Name
+          Value: !Sub vpc-${EnvironmentName}
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub igw-${EnvironmentName}
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+  # サブネットの作成
+  PublicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: !Ref PublicSubnet1CIDR
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pubsubnet01
+  PublicSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 1, !GetAZs '' ]  
+      CidrBlock: !Ref PublicSubnet2CIDR
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pubsubnet02
+  PrivateSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: !Ref PrivateSubnet1CIDR
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pvsubnet01
+  PrivateSubnet2:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 1, !GetAZs '' ]   
+      CidrBlock: !Ref PrivateSubnet2CIDR
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-pvsubnet02      
+  # ルートテーブルの作成
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: !Sub rtb-${EnvironmentName}-public
+  DefaultPublicRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  PublicSubnet1RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet1
+  PublicSubnet2RouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref PublicRouteTable
+      SubnetId: !Ref PublicSubnet2
+  # セキュリティグループの作成
+  SecurityGroupFrontALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for front alb
+      GroupName: !Sub ${EnvironmentName}-front-alb
+      SecurityGroupIngress: 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-front-alb
+      VpcId: !Ref VPC
+  SecurityGroupFrontService:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for front svc 
+      GroupName: !Sub ${EnvironmentName}-front-svc
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 80
+          ToPort: 80
+          SourceSecurityGroupId: !Ref SecurityGroupFrontALB
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-front-svc
+      VpcId: !Ref VPC
+  SecurityGroupBackALB:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back alb
+      GroupName: !Sub ${EnvironmentName}-back-alb
+      SecurityGroupIngress: 
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          SourceSecurityGroupId: !Ref SecurityGroupFrontService
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-alb
+      VpcId: !Ref VPC
+  SecurityGroupBackService:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back svc 
+      GroupName: !Sub ${EnvironmentName}-back-svc
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 8000
+          ToPort: 8000
+          SourceSecurityGroupId: !Ref SecurityGroupBackALB
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-svc
+      VpcId: !Ref VPC
+  SecurityGroupBackRds:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: the sg for back rds 
+      GroupName: !Sub ${EnvironmentName}-back-rds
+      SecurityGroupIngress: 
+        - IpProtocol: TCP
+          FromPort: 3306
+          ToPort: 3306
+          SourceSecurityGroupId: !Ref SecurityGroupBackService
+      Tags: 
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-back-rds
+      VpcId: !Ref VPC    
+
+Outputs:
+  #気になることの検証用OUTPUT
+  VPC:
+    Description: sucess vpc created
+    Value: !Ref VPC

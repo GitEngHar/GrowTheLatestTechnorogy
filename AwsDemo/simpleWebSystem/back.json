@@ -1,0 +1,103 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:429535751272:task-definition/certdbfunction:2",
+    "containerDefinitions": [
+        {
+            "name": "certdbfunction",
+            "image": "<IMAGE2_NAME>",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "certdbfunction-8000-tcp",
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "MYSQL_USER_PASSWORD",
+                    "value": "Sugiyama1"
+                },
+                {
+                    "name": "DB_NAME",
+                    "value": "SAMPLEDB"
+                },
+                {
+                    "name": "MYSQL_ENDPOINT",
+                    "value": "sample-db.ckwqw70fdtx4.ap-northeast-1.rds.amazonaws.com"
+                },
+                {
+                    "name": "TB_NAME",
+                    "value": "certtb"
+                },
+                {
+                    "name": "MYSQL_USER_NAME",
+                    "value": "postgres"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/certdbfunction",
+                    "awslogs-region": "ap-northeast-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            }
+        }
+    ],
+    "family": "certdbfunction",
+    "executionRoleArn": "arn:aws:iam::429535751272:role/ecsTaskExecutionROLE",
+    "networkMode": "awsvpc",
+    "revision": 2,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-09-22T06:19:45.759Z",
+    "registeredBy": "arn:aws:iam::429535751272:root"
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+<body>
+    <p>エンドポイントを入力</p>
+    <input id="dblink" type="text"><br><br>
+    <p>入力されたバックエンドから値を取得する</p>
+    <button id="getrequest" onclick="getCertData();">GET</button>
+    <p id="view"></p><br><br>
+    <p>入力された値をバックエンドへ登録する</p>
+    <ul>
+        <li>資格の種類　:　<input id="skillType" type="text"></li>
+        <li>資格の名前　:　<input id="certName" type="text"></li>
+    </ul>
+    <button id="postrequest" onclick="postCertData();">POST</button>
+    <p id="postview"></p>
+    <script  language="javascript" type="text/javascript">
+        async function  getCertData(){
+            var target = document.getElementById("view");
+            var dbgetLink = document.getElementById("dblink").value;
+            document.getElementById("dblink").value = ""
+            var viewText = ""
+            if(!inputCheck(dbgetLink,"http")){
+                target.innerHTML = "エンドポイントを正しくを入力してください";
+                return 0
+            }
+            let requestUrl = new URL("/getcert",dbgetLink)
+            var response = await fetch(requestUrl);
+            if(!response.ok){
+                viewText = "ResponseError";
+            }            
+            const certRawJsonData = await response.json();
+            const certJsonToStringData = JSON.stringify(certRawJsonData)
+            var fixCertJsonTypeData = certJsonToStringData.replace(/'/g,"\"")
+            fixCertJsonTypeData = fixCertJsonTypeData.replace("\"{{","[{")
+            fixCertJsonTypeData = fixCertJsonTypeData.replace("}}\"","}]")
+            const certJsonData = JSON.parse(fixCertJsonTypeData,(key,value) => {
+                switch(key){
+                    case "skillType":
+                        viewText += `資格スキルの種類 : ${value} <br>`;
+                        break;
+                    case "certName":
+                        viewText += `資格名 : ${value} <br><br>`
+                }
+            })
+            target.innerHTML = viewText;
+            console.log('response.json():', viewText);
+
+        }
+
+        async function postCertData(){
+            var target = document.getElementById("postview");
+            var dbgetLink = document.getElementById("dblink").value;
+            var skillTypeText = document.getElementById("skillType").value
+            var certName = document.getElementById("certName").value
+            document.getElementById("skillType").value = ""
+            document.getElementById("certName").value = ""
+            document.getElementById("dblink").value = ""
+            if(!inputCheck(dbgetLink,"http")){
+                target.innerHTML = "エンドポイントを正しくを入力してください";
+                return 0
+            }
+            if(!inputCheck(skillTypeText,"none") || !inputCheck(certName,"none")){
+                target.innerHTML = "バックエンドへ送るテキストを入力してください";
+                return 0
+            }
+            var data = {
+                skilltype: skillTypeText,
+                certname: certName
+            }
+            let requestUrl = new URL("/regcert",dbgetLink)
+            target.innerHTML = "Success"
+            const response = await fetch(requestUrl, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        }
+        function inputCheck(checktr,type){
+            switch(type){
+                case "http":
+                    return checktr.startsWith("http")
+                case "none":
+                    var response = true
+                    if(checktr.length == 0){
+                        response = false
+                    }
+                    return response
+            }
+        }
+    </script>
+</body>
+
+</html>

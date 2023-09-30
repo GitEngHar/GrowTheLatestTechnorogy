@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16	
+      Tags:
+        - Key: Name
+          Value: CloudFormationVPC
+  publicSubnet1:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: vpc-0f5bedad59c5a7d89
+      AvailabilityZone: !Select 
+        - 0
+        - Fn::GetAZs: !Ref AWS::Region
+      CidrBlock: 10.0.0.0/24
+      Tags:
+        - Key: Name
+          Value: CloudFormation-public-VPC
+        - Key: DriftTest
+          Value: Test
